@@ -18,3 +18,22 @@ body {
   color: var(--foreground);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
+/* Скрыть горизонтальный скроллбар на мобилке, оставить прокрутку доступной */
+.scrollbar-hidden-mobile {
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden-mobile::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .scrollbar-hidden-mobile {
+    scrollbar-width: auto;
+  }
+
+  .scrollbar-hidden-mobile::-webkit-scrollbar {
+    display: initial;
+  }
+}
