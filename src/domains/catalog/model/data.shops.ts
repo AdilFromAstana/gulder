@@ -57,4 +57,20 @@ export const SHOPS: Shop[] = [
       instagram: "orchid.studio.kz",
     },
   },
+  {
+    id: "kaspi-market",
+    slug: "kaspi-market",
+    name: "Kaspi Market",
+    description: "Подборка товарных карточек с Kaspi для каталога букетов.",
+    city: "Алматы",
+    address: "Онлайн",
+    location: {
+      lat: 43.238949,
+      lng: 76.889709,
+    },
+    workingHours: "Круглосуточно",
+    contacts: {
+      phone: "+7 700 000 00 00",
+    },
+  },
 ];

@@ -9,13 +9,14 @@ import {
 import {
   filterProducts,
   parseProductsFilterFromSearchParams,
+  sortProducts,
   type RawSearchParams,
 } from "@/src/domains/catalog/model/filtering";
 import { ShopHeader } from "@/src/domains/catalog/ui/ShopHeader";
-import { ProductsFilters } from "@/src/domains/catalog/ui/ProductsFilters";
 import { ProductsList } from "@/src/domains/catalog/ui/ProductsList";
 import { ShopMap } from "@/src/shared/ui/ShopMap";
 import { Breadcrumbs } from "@/src/shared/ui/Breadcrumbs";
+import { ProductsFilters } from "@/src/domains/catalog/ui/ProductsFilters";
 
 type PageParams = {
   shopSlug: string;
@@ -65,6 +66,7 @@ export default async function ShopPage({ params, searchParams }: PageProps) {
   const { shopSlug: _ignoredShopSlug, ...filterWithoutShop } = filter;
 
   const filteredProducts = filterProducts(shopProducts, filterWithoutShop);
+  const sortedProducts = sortProducts(filteredProducts, filter.sort);
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4 py-8">
@@ -84,7 +86,7 @@ export default async function ShopPage({ params, searchParams }: PageProps) {
         shops={allShops}
       />
 
-      <ProductsList products={filteredProducts} shops={allShops} />
+      <ProductsList products={sortedProducts} shops={allShops} />
     </div>
   );
 }

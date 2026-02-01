@@ -49,6 +49,18 @@ export function searchProducts(
       haystackParts.push(color.toLowerCase());
     }
 
+    if (product.flowerTypes && product.flowerTypes.length > 0) {
+      for (const type of product.flowerTypes) {
+        haystackParts.push(type.toLowerCase());
+      }
+    }
+
+    if (product.stemHeights && product.stemHeights.length > 0) {
+      for (const h of product.stemHeights) {
+        haystackParts.push(String(h));
+      }
+    }
+
     if (shop) {
       haystackParts.push(shop.name.toLowerCase());
     }

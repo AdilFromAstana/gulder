@@ -49,9 +49,20 @@ export type Product = {
 
   colors: string[];
 
+  /** Возможные высоты стеблей в см. */
+  stemHeights: number[];
+
+  /** Виды цветов в букете (для фильтра и поиска). */
+  flowerTypes: string[];
+
   gifts?: ProductGift[];
 
   images: string[];
+
+  rating?: {
+    value: number;
+    count: number;
+  };
 
   isAvailable: boolean;
 };

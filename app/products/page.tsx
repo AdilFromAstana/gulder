@@ -4,11 +4,12 @@ import { getAllProducts, getAllShops } from "@/src/domains/catalog/model/reposit
 import {
   filterProducts,
   parseProductsFilterFromSearchParams,
+  sortProducts,
   type RawSearchParams,
 } from "@/src/domains/catalog/model/filtering";
-import { ProductsFilters } from "@/src/domains/catalog/ui/ProductsFilters";
 import { ProductsList } from "@/src/domains/catalog/ui/ProductsList";
 import { Breadcrumbs } from "@/src/shared/ui/Breadcrumbs";
+import { ProductsFilters } from "@/src/domains/catalog/ui/ProductsFilters";
 
 type PageSearchParams = RawSearchParams;
 
@@ -32,6 +33,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
   const filter = parseProductsFilterFromSearchParams(resolvedSearchParams);
 
   const filteredProducts = filterProducts(products, filter, { shops });
+  const sortedProducts = sortProducts(filteredProducts, filter.sort);
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4 py-8">
@@ -53,7 +55,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         showShopSelect
       />
 
-      <ProductsList products={filteredProducts} shops={shops} />
+      <ProductsList products={sortedProducts} shops={shops} />
     </div>
   );
 }
